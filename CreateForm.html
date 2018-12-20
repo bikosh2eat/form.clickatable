@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 16px;
+            text-align:right;
+            direction:rtl;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var myForm = document.createElement("form");
+            var myFormCont = document.createElement("div");
+            
+            var myUserNameLbl = document.createElement("label");
+            var myUserName = document.createElement("input");
+            myUserName.setAttribute("name", "FirstName");
+            
+            var myUserFNamelbl = document.createElement("label");
+            var myUserFName = document.createElement("input");
+            myUserFName.setAttribute("name", "LastName");
+
+            var myUserEmaillbl = document.createElement("label");
+            var myUserEmail = document.createElement("input");
+            myUserEmail.setAttribute("name", "Email");
+
+            var myUserPhonelbl = document.createElement("label");
+            var myUserPhone = document.createElement("input");
+            myUserPhone.setAttribute("name", "Number");
+
+            var myUserPhoneCodelbl = document.createElement("label");
+            var myUserPhoneCode = document.createElement("select");
+            myUserPhoneCode.setAttribute("name", "AreaCode");
+
+            var myUserCommerlbl = document.createElement("label");
+            var myUserCommer = document.createElement("input");
+            myUserCommer.setAttribute("type", "checkbox");
+
+            
+
+            var myUserRestID = document.createElement("input");
+            myUserRestID.setAttribute("type", "hidden");
+            myUserRestID.setAttribute("value", "6bcd8f60-1392-45e4-81b0-3ecf3bbbc259");
+            myUserRestID.setAttribute("name", "RestaurantID");
+
+            var myUserDate = document.createElement("input");
+            myUserDate.setAttribute("type", "hidden");
+            myUserDate.setAttribute("value", "2018-11-17T16:00:00+03:00");
+            myUserDate.setAttribute("name", "SelectedDateTime");
+
+            var myUserSubmit = document.createElement("input");
+            myUserSubmit.setAttribute("type", "button");
+            myUserSubmit.value = "שלח";
+            myUserSubmit.setAttribute("onclick", "javascript:sendMyData()");
+
+            var myUserPhoneCodeA = document.createElement("option");
+            myUserPhoneCodeA.text = "050";
+            var myUserPhoneCodeB = document.createElement("option");
+            myUserPhoneCodeB.text = "052";
+            var myUserPhoneCodeC = document.createElement("option");
+            myUserPhoneCodeC.text = "053";
+            var myUserPhoneCodeD = document.createElement("option");
+            myUserPhoneCodeD.text = "054";
+            var myUserPhoneCodeE = document.createElement("option");
+            myUserPhoneCodeE.text = "055";
+            var myUserPhoneCodeF = document.createElement("option");
+            myUserPhoneCodeF.text = "058";
+            myUserPhoneCode.add(myUserPhoneCodeA);
+            myUserPhoneCode.add(myUserPhoneCodeB);
+            myUserPhoneCode.add(myUserPhoneCodeC);
+            myUserPhoneCode.add(myUserPhoneCodeD);
+            myUserPhoneCode.add(myUserPhoneCodeE);
+            myUserPhoneCode.add(myUserPhoneCodeF);
+
+            var myUserRemarkslbl = document.createElement("label");
+            var myUserRemarks = document.createElement("input");
+
+            myUserNameLbl.setAttribute("for", "myFormName");
+            myUserNameLbl.innerText = "שם";
+            myUserFNamelbl.setAttribute("for", "myUserFName");
+            myUserFNamelbl.innerText = "משפחה";
+            myUserEmaillbl.setAttribute("for", "myUserEmail");
+            myUserEmaillbl.innerText = "אימייל";
+            myUserPhonelbl.setAttribute("for", "myUserPhone");
+            myUserPhonelbl.innerText = "טלפון";
+            myUserRemarkslbl.setAttribute("for", "myUserRemarks");
+            myUserRemarkslbl.innerText = "הערות";
+
+            myUserCommerlbl.setAttribute("for", "myUserCommer");
+            myUserCommerlbl.innerText = "מאשר";
+            
+
+            myForm.appendChild(myUserNameLbl);
+            myForm.appendChild(myUserName);
+            myForm.appendChild(myUserFNamelbl);
+            myForm.appendChild(myUserFName);
+            myForm.appendChild(myUserEmaillbl);
+            myForm.appendChild(myUserEmail);
+            myForm.appendChild(myUserPhonelbl);
+            myForm.appendChild(myUserPhone);
+            myForm.appendChild(myUserPhoneCode);
+            myForm.appendChild(myUserRemarkslbl);
+            myForm.appendChild(myUserRemarks);
+            myForm.appendChild(myUserCommerlbl);
+            myForm.appendChild(myUserCommer);
+            myForm.appendChild(myUserSubmit);
+            
+            myForm.setAttribute("method","post");
+
+            myFormCont.appendChild(myForm);
+            document.body.appendChild(myFormCont);
+
+            // http://restorun.info/ClickATableApi/Restaurant
+        }
+        // var chatIfrm = document.createElement("iframe");
+        // var chatWin = document.createElement("div");
+
+        function sendMyData() {
+            // alert("sds");
+            sendData("");
+        }
+        function sendData(data) {
+            var XHR = new XMLHttpRequest();
+            var urlEncodedData = "";
+            var urlEncodedDataPairs = [];
+            var name;
+
+            // Turn the data object into an array of URL-encoded key/value pairs.
+            for (name in data) {
+                urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+            }
+
+            // Combine the pairs into a single string and replace all %-encoded spaces to 
+            // the '+' character; matches the behaviour of browser form submissions.
+            urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+            // Define what happens on successful data submission
+            //XHR.addEventListener('load', function (event) {
+            //    alert('Yeah! Data sent and response loaded.');
+            //});
+            XHR.addEventListener('load', reqListener);
+
+            // Define what happens in case of error
+            XHR.addEventListener('error', function (event) {
+                alert('Oops! Something goes wrong.');
+            });
+
+            // Set up our request
+            XHR.open('POST', 'http://restorun.info/ClickATableApi/reservation'); // http://restorun.info/ClickATableApi/Restaurant
+
+            // Add the required HTTP header for form data POST requests
+            XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Finally, send our data.
+            //XHR.send(urlEncodedData);
+            XHR.send({ "RestaurantID": "1e0a5915-d670-4b6a-b06f-530a3fd09bf8", "FirstName": "rrr", "LastName": "rrr", "AreaCode": "054", "Number": "2000940", "Email": "barak@email.com", "Area": "00000000-0000-0000-0000-000000000000", "Smoking": 2, "Remark": "remark", "PartySize": 2, "SelectedDateTime": "2018-11-17T16:00:00+03:00" });
+        }
+        function reqListener() {
+            // alert(this.responseText);
+            var a = this.responseText;
+            document.write(a);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

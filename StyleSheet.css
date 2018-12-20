@@ -1,0 +1,280 @@
+﻿/***Parent style Start****/
+@media screen and (min-width: 768px) {
+    .container-form
+
+{
+    max-width: 600px;
+}
+
+.container-form #custRegister table {
+    width: 100% !important;
+}
+
+}
+
+@media screen and (min-width: 300px) and (max-width: 760px) {
+    .container-form {
+        max-width: 100%;
+    }
+
+        .container-form #custRegister table {
+            width: 100% !important;
+        }
+}
+
+.alert {
+    padding: 20px;
+    /*background-color: #f44336;*/
+    color: red;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+
+
+    .alert.success {
+        color: black;
+        /*background-color: #4CAF50;*/
+    }
+
+.container-form {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    background-color: #fff;
+}
+
+    .container-form * {
+        font-family: Assistant;
+        font-size: 20px;
+        line-height: 1.1;
+    }
+    /***Parent style End****/
+    .container-form #custRegister {
+        display: inline-block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        direction: rtl;
+    }
+
+        .container-form #custRegister table tbody tr {
+            background-color: #fff !important;
+            display: table-row !important;
+        }
+
+            .container-form #custRegister table tbody tr td {
+                background-color: #fff !important;
+                display: table-cell !important;
+                text-align: right;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+
+        .container-form #custRegister label {
+            display: inline-block !important;
+            color: #000 !important;
+        }
+
+        .container-form #custRegister select, input {
+            color: #000 !important
+        }
+
+        .container-form #custRegister h3 {
+            width: 90%;
+            text-align: center;
+            color: #000;
+            margin: 5px auto 20px auto;
+            line-height: 1;
+        }
+
+        .container-form #custRegister label.label-block {
+            display: block !important;
+            text-align: right;
+            font-weight: bold;
+            width: 50%;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .container-form #custRegister table tr td.first {
+            width: 90%;
+            text-align: right;
+            vertical-align: top;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td.second {
+            width: 10%;
+            text-align: right;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td.third {
+            width: 50%;
+            text-align: right;
+            vertical-align: top;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td.prefix-mobile {
+            vertical-align: top;
+        }
+
+        .container-form #custRegister table tr td.forselect1 {
+            width: 30%;
+            text-align: right;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td.forselect2 {
+            width: 30%;
+            text-align: center;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td.forselect3 {
+            width: 30%;
+            text-align: right;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td.forselect5 {
+            width: 20%;
+            text-align: right;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tr td input {
+            border: #e2e2e2 ridge 2px !important;
+            border-radius: 3px;
+            padding: 1px;
+        }
+
+        .container-form #custRegister table tr td select {
+            border: #e2e2e2 ridge 2px !important;
+            border-radius: 3px;
+            padding: 0.625rem 1px;
+            display: inline-block;
+        }
+
+            .container-form #custRegister table tr td select.bodyform {
+                margin: 0px;
+                width: 100%;
+            }
+
+        .container-form #custRegister table tr td input[type='text'] {
+            width: 100%;
+            display: inline-block;
+            padding: 0.625rem 0;
+            color: #000 !important;
+        }
+
+        .container-form #custRegister table tr td input[name='mobileNumber'] {
+            width: 100%;
+            text-align: left !important;
+            direction: ltr !important;
+            color: #000 !important;
+        }
+
+        .container-form #custRegister table tr td input[name="email"] {
+            text-align: left;
+            direction: ltr;
+            color: #000 !important;
+        }
+
+        .container-form #custRegister table tr td.center {
+            text-align: center !important;
+            padding: 1px 0;
+        }
+
+        .container-form #custRegister table tfoot tr td {
+            text-align: right !important;
+            padding: 10px 0px;
+        }
+
+            .container-form #custRegister table tfoot tr td span {
+                display: inline-block;
+                padding: 10px 0px;
+            }
+
+            .container-form #custRegister table tfoot tr td input[type="submit"] {
+                padding: 5px 10px;
+                font-weight: bold;
+                font-size: 110%;
+                cursor: pointer;
+                border: #e2e2e2 outset 2px !important;
+                margin-right: 1px;
+                color: #000;
+            }
+
+                .container-form #custRegister table tfoot tr td input[type="submit"]:hover {
+                    border: #e2e2e2 inset 2px !important;
+                }
+
+            .container-form #custRegister table tfoot tr td input[type="checkbox"] {
+                border: #e2e2e2 ridge 1px !important;
+                margin: 0;
+                color: #000 !important;
+            }
+
+span.must {
+    color: #f00;
+    padding: 0 !important;
+    display: inline !important;
+}
+
+select#mobileCode {
+    margin-right: 2px;
+    width: 100%;
+    color: #000 !important;
+}
+
+.special-text {
+    color: #000;
+}
+
+.container-form #custRegister table tfoot tr td.special-text-2 {
+    text-align: justify !important;
+    padding: 10px 0px 10px 12px;
+    font-size: 58%;
+}
+
+.error_sml {
+    font-size: 70%;
+    color: red;
+    font-weight: bold;
+    padding-right: 1px;
+}
+
+.good_sml {
+    font-size: 70%;
+    color: lightgreen;
+    font-weight: bold;
+    padding-right: 1px;
+}
+
+span.error_message {
+    visibility: visible;
+    width: 100%;
+    height: 14px;
+    font-size: 14px;
+    color: red;
+    text-align: right;
+    text-indent: 10px;
+    font-style: italic;
+}
+
+#club-loader {
+    display: none;
+}
+
+#success-message {
+    display: none !important;
+    font: bold 18px Assistant;
+    color: #000;
+    margin-top: -150px;
+}

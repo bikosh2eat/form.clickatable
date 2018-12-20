@@ -1,0 +1,1066 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="StyleSheet.css" />
+    <style>
+        body {
+            text-align:right;direction:rtl;font-family:Arial;
+        }
+        label {
+            display: block;
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Ads: 1012410180 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1012410180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-1012410180');
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript">
+
+        function conversiontag() {
+            gtag('event', 'conversion', { 'send_to': 'AW-1012410180/7g34CIerp4sBEMTO4OID' });
+        }
+
+        function onloaded() {
+            n = new Date();
+            document.getElementById("Year").value = n.getFullYear();
+            document.getElementById("Month").value = n.getMonth() + 1;
+            document.getElementById("Day").value = n.getDate();
+            document.getElementById("Hour").value = n.getHours() + 1;
+            var minutes = n.getMinutes();
+            var m = (Math.round(minutes / 15) * 15) % 60;
+            document.getElementById("Minutes").value = m;
+            
+            setAreas();
+        }
+
+        function setAreas() {
+            // var restorun = document.getElementById('clickFormReg').getAttribute('action').split("/", 5); //Form action value
+            // var RestaurantID = restorun[restorun.length - 1];
+            var RestaurantID = "0543511E-30A2-4C1E-A271-243EA37EE6CE";
+
+            var url = "https://restorun.info/ClickATableApi/Areas/" + RestaurantID;
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Set type values to be sended by header
+            xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://restorun.info');
+            xhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, PUT, DELETE, OPTIONS');
+            xhr.send();
+            xhr.onreadystatechange = createAreasCallback();
+        }
+        function createAreasCallback() {
+            return function () {
+                if (this.readyState == 4 && (this.status == 200)) {
+                    var Data = JSON.parse(this.responseText);
+
+                    var areas = Data.AreasList;
+
+                    if (areas != "undefined")
+                        setAreasValue(areas);
+                }
+            };
+        }
+
+        function setAreasValue(areas) {
+
+            var select = document.getElementById("Area");
+            opt = document.createElement("option");
+            opt.value = '00000000-0000-0000-0000-000000000000';
+            opt.textContent = "לא משנה";
+            select.appendChild(opt);
+
+            for (var i = 0; i < areas.length; i++) {
+                opt = document.createElement("option");
+                opt.value = areas[i].AreaID;
+                opt.textContent = areas[i].AreaName;
+                select.appendChild(opt);
+            }
+        }
+
+        if (typeof clickOptions == "undefined") {
+            var clickOptions = [];
+        }
+        var emailerror1 = "שדה דואר אלקטרוני הינו חובה";
+        var emailerror2 = "ערך דואר אלקטרוני אינו תקין";
+        var result = false;
+        var fromOptions = false;
+
+        function valid_fname() {
+            if (document.getElementById('FirstName').value === '') {
+                document.getElementById('error_field1').style.display = 'inline';
+                document.getElementById('good_field1').style.display = 'none';
+                document.getElementById('error_field1_message').innerText = 'שדה שם פרטי הינו חובה';
+                document.getElementById('FirstName').focus();
+                return false;
+            } else {
+                document.getElementById('good_field1').style.display = 'inline';
+                document.getElementById('error_field1').style.display = 'none';
+                document.getElementById('error_field1_message').innerText = '';
+                return true;
+            }
+        }
+        function valid_partysize() {
+            if (document.getElementById('PartySize').value === '') {
+                document.getElementById('error_partysize').style.display = 'inline';
+                document.getElementById('good_partysize').style.display = 'none';
+                document.getElementById('error_partysize_message').innerText = 'שדה מספר סועדים הינו חובה';
+                document.getElementById('PartySize').focus();
+                return false;
+            } else {
+                document.getElementById('good_partysize').style.display = 'inline';
+                document.getElementById('error_partysize').style.display = 'none';
+                document.getElementById('error_partysize_message').innerText = '';
+                return true;
+            }
+        }
+        function valid_lastname() {
+            if (document.getElementById('LastName').value === '') {
+                document.getElementById('LastName').focus();
+                document.getElementById('error_field2').style.display = 'inline';
+                document.getElementById('good_field2').style.display = 'none';
+                document.getElementById('error_field2_message').innerText = 'שדה שם משפחה הינו חובה';
+                return false;
+            } else {
+                document.getElementById('good_field2').style.display = 'inline';
+                document.getElementById('error_field2').style.display = 'none';
+                document.getElementById('error_field2_message').innerText = '';
+                return true;
+            }
+        }
+
+        function valid_email() {
+            var email = document.getElementById('email').value;
+            if (email == '') {
+                document.getElementById('error_email').style.display = 'inline';
+                document.getElementById('good_email').style.display = 'none';
+                document.getElementById('error_email_message').innerText = emailerror1;
+                document.getElementById('email').focus();
+                return false;
+            } else if (email.indexOf("@") == -1) {
+                document.getElementById('error_email').style.display = 'inline';
+                document.getElementById('good_email').style.display = 'none';
+                document.getElementById('error_email_message').innerText = emailerror2;
+                document.getElementById('email').focus();
+                return false;
+            } else if (email.indexOf(".") == -1) {
+                document.getElementById('error_email').style.display = 'inline';
+                document.getElementById('good_email').style.display = 'none';
+                document.getElementById('error_email_message').innerText = emailerror2;
+                document.getElementById('email').focus();
+                return false;
+            } else {
+                document.getElementById('good_email').style.display = 'inline';
+                document.getElementById('error_email').style.display = 'none';
+                document.getElementById('error_email_message').innerText = '';
+                return true;
+            }
+        }
+        function valid_mobile() {
+            if (document.getElementById('Number').value === '') {
+                document.getElementById('error_mobileNumber').style.display = 'inline';
+                document.getElementById('good_mobileNumber').style.display = 'none';
+                document.getElementById('error_mobileNumber_message').innerText = 'שדה נייד הינו חובה';
+                document.getElementById('Number').focus();
+                return false;
+            } else {
+                document.getElementById('good_mobileNumber').style.display = 'inline';
+                document.getElementById('error_mobileNumber').style.display = 'none';
+                document.getElementById('error_mobileNumber_message').innerText = '';
+                return true;
+            }
+        }
+        //function Validator() {
+        //    alert("hello")
+        //    return false;
+        //}
+        function Validator() {
+            //result = valid_fname();
+            //result = valid_lastname();
+            //result = valid_email();
+            //result = valid_mobile();
+            
+            result = Connection();
+            alert("finish send bla bla")
+            waitingForResult();
+            return false;
+        }
+
+        function closeError(id) {
+            var obj = document.getElementById(id);
+            obj.style.display = "none";
+            document.getElementById(id + '_message').innerText = '';
+
+        }
+        function waitingForResult() {
+            result = false;
+        }
+
+        var dates = new Array('1|31', '2|28', '3|31', '4|30', '5|31', '6|30', '7|31', '8|31', '9|30', '10|31', '11|30', '12|31');
+        function setDays(dd, trg) {
+            var month = dd.options[dd.selectedIndex].value;
+            if (dd.selectedIndex == 0 || dd.selectedIndex == -1)
+                return;
+            var target = document.getElementById(trg);
+            var lastS = target.selectedIndex;
+            target.options.length = 0;
+            var i;
+
+            for (i = 0; i < dates.length; i++) {
+                string = dates[i].split('|');
+                if (parseInt(string[0]) == parseInt(month)) {
+                    target.options[0] = new Option('--', '--');
+                    for (var j = 1; j <= parseInt(string[1]); j++) {
+                        target.options[j] = new Option(j, j);
+                    }
+                }
+            }
+            if (target.options.length >= lastS) {
+                target.selectedIndex = lastS;
+            } else {
+                target.selectedIndex = 0;
+            }
+
+        }
+
+        function Connection() {
+
+            document.getElementById('ErrorMessage').style.display = "none";
+            document.getElementById('OutMessage').style.display = "none";
+
+            var area = document.getElementById('Area').value; 
+            //var year = document.getElementById('Year').value;
+            //var month = document.getElementById('Month').value;
+            //var day = document.getElementById('Day').value;
+            //var hh = document.getElementById('Hour').value;
+            //var min = document.getElementById('Minutes').value;
+            
+            var selecteddate = new Date(
+                document.getElementById('Year').value,
+                document.getElementById('Month').value - 1,
+                document.getElementById('Day').value,
+                document.getElementById('Hour').value,
+                document.getElementById('Minutes').value
+            );
+            
+            makeReservation(area, selecteddate);
+        }
+
+        function sendOptionFunction() {
+
+            document.getElementById('OutMessage').innerText = "";
+
+            var radios = document.getElementsByName('choice');
+
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked == true) {
+
+                    var area = clickOptions[i].areaIDField;
+                    var selecteddate = clickOptions[i].dateTimeField;
+
+                    document.getElementById('Area').value = clickOptions[i].areaIDField;
+                    document.getElementById('SelectedDateTime').value = clickOptions[i].dateTimeField;
+
+
+                    makeReservation(area, selecteddate);
+
+                    document.getElementById('back').style.display = "none";
+                    document.getElementById('optionsForm').style.display = "none";
+                    break;
+                }
+            }
+        }
+
+        function createCallback() {
+            return function () {
+                document.getElementById('ErrorMessage').innerText = "";
+                document.getElementById('OutMessage').innerText = "";
+
+                if (this.readyState == 4 && (this.status == 200)) {
+                    var Data = JSON.parse(this.responseText);
+
+                    var reservation = Data.Reservation;
+                    var Customer = Data.Customer;
+                    var Restorun = Data.Restorun;
+
+                    if (Data.Status.StatusCode == 1) {
+                        fromOptions = false;
+                        var parts = reservation.DateTime.match(/(\d+)/g);
+                        var dt = new Date(parts[0], parts[1] - 1, parts[2], parts[3], parts[4]); // months are 0-based
+                        var datestring = dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes();
+
+                        outMessage = "הזמנה בוצעה בהצלחה - ";
+                        outMessage += Data.Status.StatusDescription + "\n";
+                        outMessage += "תאריך ההזמנה: " + datestring + "\n";
+                        outMessage += " אזור במסעדה: " + reservation.Area.areaNameField + "\n";
+                        outMessage += "הזמנה על שם: " + Customer.FirstName + " " + Customer.LastName + "\n";
+                        outMessage += "כמות הסועדים: " + reservation.PartySize + "\n";
+                        outMessage += "מסעדת " + Restorun.Name + "\n";
+                        outMessage += "כתובת: " + Restorun.Address + " " + Restorun.City + "\n";
+                        outMessage += "טלפון במסעדה: " + Restorun.Phone;
+
+                        document.getElementById('optionsForm').style.display = "none";
+                        conversiontag();
+                        //gtag('event', 'conversion', { 'send_to': 'AW-1012410180/7g34CIerp4sBEMTO4OID' });
+                    }
+                    else if (Data.Status.StatusCode == 2) {
+                        fromOptions = false;
+                        var parts = reservation.DateTime.match(/(\d+)/g);
+                        var dt = new Date(parts[0], parts[1] - 1, parts[2], parts[3], parts[4]); // months are 0-based
+                        var datestring = dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes();
+
+                        outMessage = "בקשה נשלחה בהצלחה - ";
+                        outMessage += Data.Status.StatusDescription + "\n";
+                        outMessage += "תאריך הבקשה: " + datestring + "\n";
+                        outMessage += " אזור במסעדה: " + reservation.Area.areaNameField + "\n";
+                        outMessage += "בקשה על שם: " + Customer.FirstName + " " + Customer.LastName + "\n";
+                        outMessage += "כמות הסועדים: " + reservation.PartySize + "\n";
+                        outMessage += "מסעדת " + Restorun.Name + "\n";
+                        outMessage += "כתובת: " + Restorun.Address + " " + Restorun.City + "\n";
+                        outMessage += "טלפון במסעדה: " + Restorun.Phone;
+
+                        document.getElementById('optionsForm').style.display = "none";
+                        conversiontag();
+                        //gtag('event', 'conversion', { 'send_to': 'AW-1012410180/7g34CIerp4sBEMTO4OID' });
+                    }
+                    else if (Data.Status.StatusCode == 3) {
+                        fromOptions = true;
+                        clickOptions = [];
+                        outMessage = Data.Status.StatusDescription;
+                        var label = document.createElement('label');
+                        var options = Data.Options;
+                        for (var i = 0; i < options.length; i++) {
+                            var parts = options[i].dateTimeField.match(/(\d+)/g);
+                            var dt = new Date(parts[0], parts[1] - 1, parts[2], parts[3], parts[4]); // months are 0-based
+                            var datestring = dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes();
+
+                            var singleoption = {};
+                            singleoption['datestring'] = datestring;
+                            singleoption['dateTimeField'] = options[i].dateTimeField;
+                            singleoption['areaNameField'] = options[i].areaField.areaNameField;
+                            singleoption['areaIDField'] = options[i].areaField.areaIDField;
+
+                            clickOptions.push(singleoption);
+
+                            var choiceSelection = document.createElement('input');
+                            choiceSelection.setAttribute('type', 'radio');
+                            choiceSelection.setAttribute('name', 'choice');
+                            var theChoice = datestring + " באזור: " + options[i].areaField.areaNameField;
+                            choiceSelection.setAttribute('value', theChoice);
+                            label.appendChild(choiceSelection);
+                            label.innerHTML += "<span>    " + theChoice + " </span > " + "\n";
+                            label.innerHTML += "<br \>";
+
+                            document.getElementById('answersBox').appendChild(label);
+                        }
+
+                        document.getElementById('optionsForm').style.display = "block";
+                    }
+
+                    else if (Data.Status.StatusCode == 0) {
+                        outMessage = Data.Status.StatusDescription;
+                        document.getElementById('optionsForm').style.display = "none";
+                    }
+
+                    document.getElementById('ErrorMessage').style.display = "none";
+
+
+                    document.getElementById('tableform').style.display = "none";
+                    document.getElementById('OutMessage').innerText = outMessage;
+                    document.getElementById('OutMessage').style.display = "block";
+                }
+                else {
+                    document.getElementById('optionsForm').style.display = "none";
+
+                    document.getElementById('tableform').style.display = "none";
+                    document.getElementById('ErrorMessage').innerText = "עברת את מכסת ההזמנות";
+                    document.getElementById('ErrorMessage').style.display = "block";
+                }
+
+                document.getElementById('back').innerHTML = "חזרה";
+                document.getElementById('back').style.display = "block";
+            };
+        }
+        function makeReservation(area, date) {
+            var url = "https://restorun.info/ClickATableApi/ClickAPI";
+            var obj = new Object();
+            
+            // var restorun = document.getElementById('clickFormReg').getAttribute('action').split("/", 5); //Form action value
+            // obj.RestaurantID = restorun[restorun.length - 1];
+            obj.RestaurantID = "0543511E-30A2-4C1E-A271-243EA37EE6CE";
+            
+            obj.FirstName = document.getElementById('FirstName').value;
+            obj.LastName = document.getElementById('LastName').value;
+            obj.AreaCode = document.getElementById('AreaCode').value;
+            obj.Number = document.getElementById('Number').value;
+            obj.Email = document.getElementById('email').value;
+            obj.Remark = document.getElementById('Remark').value;
+            obj.PartySize = document.getElementById('PartySize').value;
+            // obj.SelectedDateTime = new Date(document.getElementById('Year').value, document.getElementById('Month').value, document.getElementById('Day').value, document.getElementById('Hour').value, document.getElementById('Minutes').value);
+            
+            obj.SelectedDateTime = date;
+            obj.Smoking = document.getElementById('Smoking').value;
+            obj.Area = area;
+
+            var jsonString = JSON.stringify(obj);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Set type values to be sended by header
+            xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://restorun.info');
+            xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+            xhr.send(jsonString);
+
+            var outMessage = "";
+            xhr.onreadystatechange = createCallback();
+        }
+        function backFunction() {
+            var xx = document.getElementById('back').innerHTML;
+            if (document.getElementById('back').innerHTML == "חזרה") {
+                document.getElementById('tableform').style.display = "inline";
+                document.getElementById('ErrorMessage').style.display = "none";
+                document.getElementById('OutMessage').style.display = "none";
+                document.getElementById('back').innerHTML = "קדימה";
+                document.getElementById('optionsForm').style.display = "none";
+            }
+            else {
+                if (fromOptions) {
+                    document.getElementById('optionsForm').style.display = "block";
+                }
+                document.getElementById('tableform').style.display = "none";
+                document.getElementById('back').innerHTML = "חזרה";
+
+                if (document.getElementById('ErrorMessage').innerText == "עברת את מכסת ההזמנות") {
+                    document.getElementById('ErrorMessage').style.display = "block";
+                }
+                else {
+                    document.getElementById('OutMessage').style.display = "block";
+                }
+            }
+        }
+
+
+    </script>
+
+    <script type="text/javascript">
+        function addOptsToObj(min, max, jump, obj) {
+            //var min = 2019,
+            //    max = 2020,
+            select = obj;// document.getElementById('selectElementId');
+
+            for (var i = min; i <= max; i += jump) {
+                var opt = document.createElement('option');
+                opt.value = i;
+                opt.innerHTML = i;
+                select.appendChild(opt);
+            }
+        }
+        window.onload = function () {
+            
+            var myFormCont = document.createElement("div");
+            myFormCont.className = "container-form";
+            var mycustRegister = document.createElement("div");
+
+            // more
+            var myback = document.createElement("div");
+            myback.id = "back";
+            var myoptionsForm = document.createElement("div");
+            myoptionsForm.id = "optionsForm";
+            var mytableform = document.createElement("div");
+            mytableform.id = "tableform";
+            var myErrorMessage = document.createElement("div");
+            myErrorMessage.id = "ErrorMessage";
+            var myOutMessage = document.createElement("div");
+            myOutMessage.id = "OutMessage";
+            document.body.appendChild(myback);
+            document.body.appendChild(myoptionsForm);
+            document.body.appendChild(mytableform);
+            document.body.appendChild(myErrorMessage);
+            document.body.appendChild(myOutMessage);
+            // end 
+
+
+            var myclickFormReg = document.createElement("form");
+            myclickFormReg.name = "RegistForm";
+            myclickFormReg.id = "RegistForm";
+            myclickFormReg.setAttribute("onsubmit", "return Validator()");
+            
+            var myDateLbl = document.createElement("label");
+            myDateLbl.innerText = "בחר תאריך ושעה";
+            
+            var myYearlbl = document.createElement("label");
+            myYearlbl.innerText = "שנה";
+            myYearlbl.setAttribute("for", "Year");
+            var myYear = document.createElement("select");
+            
+            myYear.setAttribute("name", "Year");
+            myYear.setAttribute("id", "Year");
+            addOptsToObj(2018, 2020, 1, myYear);
+
+            var myMonthlbl = document.createElement("label");
+            myMonthlbl.innerText = "חודש";
+            myMonthlbl.setAttribute("for", "Month");
+            var myMonth = document.createElement("select");
+
+            myMonth.setAttribute("name", "Month");
+            myMonth.setAttribute("id", "Month");
+            addOptsToObj(1, 12, 1, myMonth);
+
+            var myDaylbl = document.createElement("label");
+            myDaylbl.innerText = "יום";
+            myDaylbl.setAttribute("for", "Day");
+            var myDay = document.createElement("select");
+
+            myDay.setAttribute("name", "Day");
+            myDay.setAttribute("id", "Day");
+            addOptsToObj(1, 31, 1, myDay);
+
+            var myHourlbl = document.createElement("label");
+            myHourlbl.innerText = "שעה";
+            myHourlbl.setAttribute("for", "Hour");
+            var myHour = document.createElement("select");
+
+            myHour.setAttribute("name", "Hour");
+            myHour.setAttribute("id", "Hour");
+            addOptsToObj(0, 23, 1, myHour);
+
+            var myMinlbl = document.createElement("label");
+            myMinlbl.innerText = "דקות";
+            myMinlbl.setAttribute("for", "Minutes");
+            var myMin = document.createElement("select");
+
+            myMin.setAttribute("name", "Minutes");
+            myMin.setAttribute("id", "Minutes");
+            addOptsToObj(0, 45, 15, myMin);
+
+            var myUserNameLbl = document.createElement("label");
+            myUserNameLbl.innerText = "שם פרטי";
+            myUserNameLbl.setAttribute("for", "FirstName");
+            var myUserName = document.createElement("input");
+            myUserName.setAttribute("name", "FirstName");
+            myUserName.setAttribute("id", "FirstName");
+
+            var myUserFNamelbl = document.createElement("label");
+            myUserFNamelbl.innerText = "משפחה";
+            myUserFNamelbl.setAttribute("for", "LastName");
+            var myUserFName = document.createElement("input");
+            myUserFName.setAttribute("name", "LastName");
+            myUserFName.setAttribute("id", "LastName");
+
+            var myUserEmaillbl = document.createElement("label");
+            myUserEmaillbl.innerText = "אימייל";
+            myUserEmaillbl.setAttribute("for", "email");
+            var myUserEmail = document.createElement("input");
+            myUserEmail.setAttribute("name", "email");
+            myUserEmail.setAttribute("id", "email");
+
+            var myUserPhonelbl = document.createElement("label");
+            myUserPhonelbl.innerText = "טלפון";
+            myUserPhonelbl.setAttribute("for", "Number");
+            var myUserPhone = document.createElement("input");
+            myUserPhone.setAttribute("name", "Number");
+            myUserPhone.setAttribute("id", "Number");
+
+            var myUserPhoneCodelbl = document.createElement("label");
+            myUserPhoneCodelbl.innerText = "קידומת";
+            myUserPhoneCodelbl.setAttribute("for", "AreaCode");
+            var myUserPhoneCode = document.createElement("select");
+            myUserPhoneCode.setAttribute("name", "AreaCode");
+            myUserPhoneCode.setAttribute("id", "AreaCode");
+
+            // var myUserPhoneCodeA = document.createElement("option");
+            // myUserPhoneCodeA.text = "050";
+
+            var optPhone = document.createElement('option');
+            optPhone.value = "050";
+            optPhone.innerHTML = "050";
+            myUserPhoneCode.appendChild(optPhone);
+            var optPhoneb = document.createElement('option');
+            optPhoneb.value = "052";
+            optPhoneb.innerHTML = "052";
+            myUserPhoneCode.appendChild(optPhoneb);
+            var optPhonec = document.createElement('option');
+            optPhonec.value = "053";
+            optPhonec.innerHTML = "053";
+            myUserPhoneCode.appendChild(optPhonec);
+            var optPhoned = document.createElement('option');
+            optPhoned.value = "054";
+            optPhoned.innerHTML = "054";
+            myUserPhoneCode.appendChild(optPhoned);
+
+            var myUserPartySizelbl = document.createElement("label");
+            myUserPartySizelbl.innerText = "גודל אירוע";
+            myUserPartySizelbl.setAttribute("for", "PartySize");
+            var myUserPartySize = document.createElement("input");
+            myUserPartySize.setAttribute("name", "PartySize");
+            myUserPartySize.setAttribute("id", "PartySize");
+
+            var myUserSmokinglbl = document.createElement("label");
+            myUserSmokinglbl.innerText = "אזור עישון";
+            myUserPhoneCodelbl.setAttribute("for", "Smoking");
+            var myUserSmoking = document.createElement("select");
+            myUserSmoking.setAttribute("name", "Smoking");
+            myUserSmoking.setAttribute("id", "Smoking");
+
+            var optSmokea = document.createElement('option');
+            optSmokea.value = "0";
+            optSmokea.innerHTML = "לא";
+            myUserSmoking.appendChild(optSmokea);
+            var optSmokeb = document.createElement('option');
+            optSmokeb.value = "1";
+            optSmokeb.innerHTML = "כן";
+            myUserSmoking.appendChild(optSmokeb);
+            var optSmokec = document.createElement('option');
+            optSmokec.value = "2";
+            optSmokec.innerHTML = "לא משנה";
+            myUserSmoking.appendChild(optSmokec);
+
+            var myUserArealbl = document.createElement("label");
+            myUserArealbl.innerText = "אזור";
+            myUserArealbl.setAttribute("for", "Area");
+            var myUserArea = document.createElement("select");
+            myUserArea.setAttribute("name", "Area");
+            myUserArea.setAttribute("id", "Area")
+
+            var myUserRemarklbl = document.createElement("label");
+            myUserRemarklbl.innerText = "הערות";
+            myUserRemarklbl.setAttribute("for", "Remark");
+            var myUserRemark = document.createElement("textarea");
+            myUserRemark.setAttribute("name", "Remark");
+            myUserRemark.setAttribute("id", "Remark")
+
+            myclickFormReg.appendChild(myYearlbl);
+            myclickFormReg.appendChild(myYear);
+            myclickFormReg.appendChild(myMonthlbl);
+            myclickFormReg.appendChild(myMonth);
+            myclickFormReg.appendChild(myDaylbl);
+            myclickFormReg.appendChild(myDay);
+            myclickFormReg.appendChild(myHourlbl);
+            myclickFormReg.appendChild(myHour);
+            myclickFormReg.appendChild(myMinlbl);
+            myclickFormReg.appendChild(myMin);
+            
+            myclickFormReg.appendChild(myUserNameLbl);
+            myclickFormReg.appendChild(myUserName);
+            myclickFormReg.appendChild(myUserFNamelbl);
+            myclickFormReg.appendChild(myUserFName);
+            myclickFormReg.appendChild(myUserEmaillbl);
+            myclickFormReg.appendChild(myUserEmail);
+            myclickFormReg.appendChild(myUserPhonelbl);
+            myclickFormReg.appendChild(myUserPhone);
+            myclickFormReg.appendChild(myUserPhoneCodelbl);
+            myclickFormReg.appendChild(myUserPhoneCode);
+            myclickFormReg.appendChild(myUserPartySizelbl);
+            myclickFormReg.appendChild(myUserPartySize);
+            myclickFormReg.appendChild(myUserSmokinglbl);
+            myclickFormReg.appendChild(myUserSmoking);
+            myclickFormReg.appendChild(myUserArealbl);
+            myclickFormReg.appendChild(myUserArea);
+            myclickFormReg.appendChild(myUserRemarklbl);
+            myclickFormReg.appendChild(myUserRemark);
+            //var myUserCommerlbl = document.createElement("label");
+            //var myUserCommer = document.createElement("input");
+            //myUserCommer.setAttribute("type", "checkbox");
+
+
+
+            var myUserRestID = document.createElement("input");
+            myUserRestID.setAttribute("type", "hidden");
+            myUserRestID.setAttribute("value", "6bcd8f60-1392-45e4-81b0-3ecf3bbbc259");
+            myUserRestID.setAttribute("name", "RestaurantID");
+            myUserRestID.setAttribute("id", "RestaurantID");
+
+            //var myUserDate = document.createElement("input");
+            //myUserDate.setAttribute("type", "hidden");
+            //myUserDate.setAttribute("value", "2018-11-17T16:00:00+03:00");
+            //myUserDate.setAttribute("name", "SelectedDateTime");
+
+            var myUserSubmit = document.createElement("input");
+            myUserSubmit.setAttribute("type", "submit");
+            myUserSubmit.value = " חפש מקום ";
+            // myUserSubmit.setAttribute("onclick", "javascript:sendMyData()");
+
+            //var myUserPhoneCodeA = document.createElement("option");
+            //myUserPhoneCodeA.text = "050";
+            //var myUserPhoneCodeB = document.createElement("option");
+            //myUserPhoneCodeB.text = "052";
+            //var myUserPhoneCodeC = document.createElement("option");
+            //myUserPhoneCodeC.text = "053";
+            //var myUserPhoneCodeD = document.createElement("option");
+            //myUserPhoneCodeD.text = "054";
+            //var myUserPhoneCodeE = document.createElement("option");
+            //myUserPhoneCodeE.text = "055";
+            //var myUserPhoneCodeF = document.createElement("option");
+            //myUserPhoneCodeF.text = "058";
+            //myUserPhoneCode.add(myUserPhoneCodeA);
+            //myUserPhoneCode.add(myUserPhoneCodeB);
+            //myUserPhoneCode.add(myUserPhoneCodeC);
+            //myUserPhoneCode.add(myUserPhoneCodeD);
+            //myUserPhoneCode.add(myUserPhoneCodeE);
+            //myUserPhoneCode.add(myUserPhoneCodeF);
+
+            //var myUserRemarkslbl = document.createElement("label");
+            //var myUserRemarks = document.createElement("input");
+
+            //myUserNameLbl.setAttribute("for", "myFormName");
+            //myUserNameLbl.innerText = "שם";
+            //myUserFNamelbl.setAttribute("for", "myUserFName");
+            //myUserFNamelbl.innerText = "משפחה";
+            //myUserEmaillbl.setAttribute("for", "myUserEmail");
+            //myUserEmaillbl.innerText = "אימייל";
+            //myUserPhonelbl.setAttribute("for", "myUserPhone");
+            //myUserPhonelbl.innerText = "טלפון";
+            //myUserRemarkslbl.setAttribute("for", "myUserRemarks");
+            //myUserRemarkslbl.innerText = "הערות";
+
+            //myUserCommerlbl.setAttribute("for", "myUserCommer");
+            //myUserCommerlbl.innerText = "מאשר";
+
+
+            //myclickFormReg.appendChild(myUserNameLbl);
+            //myclickFormReg.appendChild(myUserName);
+            //myclickFormReg.appendChild(myUserFNamelbl);
+            //myclickFormReg.appendChild(myUserFName);
+            //myclickFormReg.appendChild(myUserEmaillbl);
+            //myclickFormReg.appendChild(myUserEmail);
+            //myclickFormReg.appendChild(myUserPhonelbl);
+            //myclickFormReg.appendChild(myUserPhone);
+            //myclickFormReg.appendChild(myUserPhoneCode);
+            //myclickFormReg.appendChild(myUserRemarkslbl);
+            //myclickFormReg.appendChild(myUserRemarks);
+            //myclickFormReg.appendChild(myUserCommerlbl);
+            //myclickFormReg.appendChild(myUserCommer);
+            //myclickFormReg.appendChild(myUserSubmit);
+
+            myclickFormReg.setAttribute("method", "post");
+
+            
+            myclickFormReg.appendChild(myUserSubmit);
+            mycustRegister.appendChild(myclickFormReg);
+            myFormCont.appendChild(mycustRegister);
+            
+            document.body.appendChild(myFormCont);
+
+            // small form
+            var myoptionsForm = document.createElement("form");
+            myoptionsForm.id = "optionsForm";
+            myoptionsForm.setAttribute("style", "display: none;");
+
+            var myanswersBox = document.createElement("div");
+            myanswersBox.id = "answersBox";
+            var mysendBox = document.createElement("div");
+            mysendBox.id = "sendBox";
+
+            var mySBSubmit = document.createElement("input");
+            mySBSubmit.setAttribute("type", "button");
+            mySBSubmit.value = "בצע הזמנה";
+            mySBSubmit.setAttribute("onclick", "javascript:sendOptionFunction()");
+
+            mysendBox.appendChild(mySBSubmit);
+            myoptionsForm.appendChild(myanswersBox);
+            myoptionsForm.appendChild(mysendBox);
+            document.body.appendChild(myoptionsForm);
+
+            // small form end
+            
+            // http://restorun.info/ClickATableApi/Restaurant
+            onloaded();
+            
+        }
+    </script>
+
+</head>
+<body>
+    <!-- onload="onloaded()" -->
+    <!--<div class="container-form">
+        <div id="custRegister">-->
+    <!--<form id="clickFormReg" action="http://webversion.net/utf-8/0543511E-30A2-4C1E-A271-243EA37EE6CE/show.aspx" target="_blank" name="RegistForm" onsubmit="return Validator()" method="post">
+        <table role="presentation" align="center" style="direction:rtl;text-align:right" border="0" id="tableform">
+            <tbody>
+
+                <tr>
+                    <td class="first" colspan="4">
+                        <label class="label-block">
+                            בחר תאריך ושעה<span class="must">*</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="forselect5">
+                        <label class="label-block">שנה</label>
+                        <select class="bodyform property" name="field22Y" id="Year" data-title="Year">
+                            <option value="">--</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                        </select>
+                        <span class="error_message">&nbsp;</span>
+                    </td>
+                    <td class="forselect5">
+                        <label class="label-block">חודש</label>
+                        <select class="bodyform property" id="Month" data-title="Month" name="field22M" onchange="javascript:setDays(this, 'field22D');">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <span class="error_message">&nbsp;</span>
+                    </td>
+                    <td class="forselect5">
+                        <label class="label-block">יום</label>
+                        <input type="hidden" id="Day" name="field22" value="date">
+                        <select class="bodyform property" id="field22D" data-title="Day">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        <span class="error_message">&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="forselect5">
+                        <label class="label-block">שעה</label>
+                        <input type="hidden" name="field22H" value="Hour">
+                        <select class="bodyform property" id="Hour" data-title="Hour">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="00">24</option>
+                        </select>
+                        <span class="error_message">&nbsp;</span>
+                    </td>
+                    <td class="forselect5">
+                        <label class="label-block">דקות</label>
+                        <input type="hidden" name="field22M" value="Minutes">
+                        <select class="bodyform property" id="Minutes" data-title="Minutes">
+                            <option value="">--</option>
+                            <option value="0">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                        <span class="error_message">&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first" colspan="3">
+                        <label class="label-block">
+                            שם פרטי<span class="must">*</span>
+                        </label>
+                        <input type="text" name="field1" id="FirstName" class="property" data-title="FirstName" value="" oninput="closeError('error_field1');" onblur="valid_fname()" />
+                        <span id="error_field1_message" class="error_message"></span>
+                    </td>
+                    <td class="second">
+                        <span class="error_sml" style="display: none;" id="error_field1">X</span>
+                        <span class="good_sml" style="display: none;" id="good_field1">V</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first" colspan="3">
+                        <label class="label-block">
+                            שם משפחה<span class="must">*</span>
+                        </label>
+                        <input type="text" name="field2" id="LastName" class="property" data-title="LastName" value="" oninput="closeError('error_field2');" onblur="valid_lastname()" />
+                        <span id="error_field2_message" class="error_message"></span>
+                    </td>
+                    <td class="second">
+                        <span class="error_sml" style="display: none;" id="error_field2">X</span>
+                        <span class="good_sml" style="display: none;" id="good_field2">V</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first" colspan="3">
+                        <label class="label-block">
+                            אימייל<span class="must">*</span>
+                        </label>
+                        <input type="text" id="email" class="property" data-title="Email" name="email" size="15" oninput="closeError('error_email');" onblur="valid_email()">
+                        <span id="error_email_message" class="error_message"></span>
+                    </td>
+                    <td class="second">
+                        <span class="error_sml" style="display: none;" id="error_email">X</span>
+                        <span class="good_sml" style="display: none;" id="good_email">V</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <label for='mobileCode' class="label-block">טלפון נייד<span class="must">*</span></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="forselect5">
+                        <label class="label-block">מספר</label>
+                        <input type='text' id='Number' class="property" data-title="Number" name='mobileNumber' maxLength='10' size='20' oninput="closeError('error_mobileNumber');" onblur="valid_mobile()" />
+                        <span id="error_mobileNumber_message" class="error_message"></span>
+                        <input type='hidden' name='mobileCountryCode' id='mobileCountryCode' value='972' />
+                    </td>
+                    <td class="forselect5">
+                        <label class="label-block">קידומת</label>
+                        <select id='AreaCode' class="property" data-title="AreaCode" name='mobileCode' onchange="closeError('error_mobileNumber');">
+                            <option value='050'>050</option>
+                            <option value='052'>052</option>
+                            <option value='054'>054</option>
+                            <option value='057'>057</option>
+                            <option value='058'>058</option>
+                            <option value='053'>053</option>
+                            <option value='055'>055</option>
+                        </select>
+                        <span class="error_message"></span>
+                    </td>
+                    <td class="second">
+                        <span class="error_sml" style="display: none;" id="error_mobileNumber">X</span>
+                        <span class="good_sml" style="display: none;" id="good_mobileNumber">V</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="first" colspan="3">
+                        <label class="label-block">
+                            מספר סועדים<span class="must">*</span>
+                        </label>
+                        <input type="text" name="PartySize" id="PartySize" class="property" data-title="PartySize" value="" oninput="closeError('error_partysize');" onblur="valid_partysize()" />
+                        <span id="error_partysize_message" class="error_message"></span>
+                    </td>
+                    <td class="second">
+                        <span class="error_sml" style="display: none;" id="error_partysize">X</span>
+                        <span class="good_sml" style="display: none;" id="good_partysize">V</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <label for='Smoking'>מעשנים</label>
+                        <select id='Smoking' class="property" data-title="Smoking" name='Smoking' onchange="closeError('error_mobileNumber');">
+                            <option value='0'>לא</option>
+                            <option value='1'>כן</option>
+                            <option value='2'>לא משנה</option>
+                        </select>
+                        <span class="error_message"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="4">
+                        <label for='Area'>אזור</label>
+                        <select id='Area' class="property" data-title="Area" name='Area' onchange="closeError('error_mobileNumber');"></select>
+                        <span class="error_message"></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="first" colspan="3">
+                        <label class="label-block">
+                            הערות
+                        </label>
+                        <input type="text" name="Remark" id="Remark" class="property" data-title="Remark" value="" oninput="closeError('error_field1');" />
+                    </td>
+                </tr>
+
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="special-text last">
+                        <span class="must">*</span>&nbsp;שדה חובה
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" style="text-align:left !important;">
+                        <input type="submit" value=" חפש מקום " class="subme" />
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="alert success" id="OutMessage" style="display:none"></div>
+        <div class="alert" id="ErrorMessage" style="display:none"></div>
+
+        <div id="back" style="display:none" onclick="backFunction()">חזרה</div>
+
+    </form>-->
+    <!--<form id="optionsForm" style="display:none">
+        < !--<label id="question">Options:</label><br />-- >
+        <div id="answersBox">
+        </div>
+        <div id="sendBox">
+            <input type="button" value="בצע הזמנה" onclick="sendOptionFunction()" />
+        </div>
+    </form>-->
+    <!--<u id="back" style="display:none" onclick="backFunction()">חזרה</u>
+
+        </div>
+    </div>-->
+    <div class="alert success" id="OutMessage" style="display:none"></div>
+    <div class="alert" id="ErrorMessage" style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿#clcFCont {
+    background-color: white;
+    font-size: 16px;
+    font-family: Arial;
+    color: black;
+}
+
+    #clcFCont .container-form .clcFrmRow input
+    #clcFCont.clcLtr {
+        border-radius: 0px;
+    }
+    #clcFCont .container-form .clcFrmRow input, .container-form .clcFrmRow select{
+        width: 7.5em;
+    }
+p.clcBtmRem {
+    
+}

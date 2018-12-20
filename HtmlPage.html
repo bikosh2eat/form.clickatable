@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        body{font-size: 50px;}
+    </style>
+    <script type="text/javascript">
+
+  
+        // Set / Get cookie
+        function SetCookie(cName, cValue, expDays) {
+            var dayMilisec = 86400000;
+            var expireDays = expDays;
+            var todayDate = new Date();
+            var expireDate = new Date();
+            if (expireDays == null || expireDays == 0)
+                expireDays = 1;
+            var expires = "; path=/"; if (expDays) {
+                expireDate.setTime(todayDate.getTime() + (dayMilisec * expireDays));
+                expires += "; expires=" + expireDate.toUTCString();
+            }
+            document.cookie = cName + "=" + escape(cValue) + expires;
+        }
+        function GetCookie(cName) {
+            var docCookies = document.cookie.split(';');
+            var cookieValue = null;
+            var cookie; if (docCookies.length > 0) {
+                for (var i = 0; i < docCookies.length; i++) {
+                    if (docCookies[i].indexOf('=') != -1) cookie = docCookies[i].split('=');
+                    if (typeof (cookie) != "undefined" && cName == cookie[0].trim()) { cookieValue = unescape(cookie[1]); break; }
+                }
+            } return cookieValue;
+        } function DeleteCookie(cName) {
+            if (GetCookie(cName))
+            { document.cookie = cName + "=;expires=Thu, 01-Jan-1970 00:00:01 GMT"; }
+        }
+        
+        var jsRef = document.createElement('script');
+        jsRef.type = 'text/javascript';
+        jsRef.async = true; jsRef.charset = 'UTF-8';
+        // jsRef.src = '//StarAgent.co.il/StarUsersFiles/55893/Agents/30905/Scripts/chatSys.js?ver=636213864948000000';
+        jsRef.src = 'testjs.js';
+        //ifrmae.src = 'https://clickiframe.clickatable.co.il/SearchPage.aspx?restaurantID=af1e2e86-78a9-419f-9789-0eda577d2f8a&redirected=1&tColor1=bd202d&tColor2=262526&tColor3=262526&tColor4=262526&ShowHeader=false&ShowHeaderMenu=false&ShowRemarks=false&width=290px&fontSize=14&showImage=false&color=none&ShowClickPoints=false;showrestuarantName=false'
+        jsRef.setAttribute('defer', 'defer');
+        var js = document.getElementsByTagName('script')[0];
+        js.parentNode.insertBefore(jsRef, js);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

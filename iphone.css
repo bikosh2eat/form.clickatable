@@ -1,0 +1,14 @@
+﻿#clcFCont input, #clcFCont select, #clcFCont textarea, .select-style {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+}
+#clcCboxCommer {
+    -webkit-appearance: checkbox !important;
+    margin-left: 1em !important;
+}
+#clcFCont .container-form label#lblCboxCoomer {
+    width: 80% !important;
+}
+
