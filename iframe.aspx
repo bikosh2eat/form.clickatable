@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="iframe.aspx.cs" Inherits="iframe" StylesheetTheme="" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="iframe.aspx.cs" Inherits="iframe" StylesheetTheme="" Theme="" %>
 
 <!DOCTYPE html>
 
@@ -13,6 +13,7 @@
         }
     </style>
     <asp:Literal runat="server" ID="litHeadCont"></asp:Literal>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
     <div id="clcFCont"></div>

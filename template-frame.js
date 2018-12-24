@@ -909,7 +909,7 @@ function createCallback() {
 
                 // אייקון טעינה
                 var clcLoadingIcnB = document.createElement("img");
-                clcLoadingIcnB.src = clcSiteUrl + "/images/loading.gif";
+                clcLoadingIcnB.src = clcSiteUrl + "/images/loading2.gif";
                 clcLoadingIcnB.className = "clcLoadingIcn clcHide";
                 addRegClassId(clcLoadingIcnB, "", "", clcRowUpdateBtnCont);
 
@@ -1659,7 +1659,7 @@ function startClick() {
     addRegClassId(clcIPutContI, "clcIPutCont clcPhoneCont clcPhone", "", clcStepBContA);
     addRegClassId(clcIPutContIb, "clcIPutCont clcPhoneCont clcPhoneArea", "", clcStepBContA);
 
-    
+
 
     // inputs step b
     addRegClassId(clcStepBContA, "clcRowIPutsCont", "", clcRowContE);
@@ -1694,7 +1694,7 @@ function startClick() {
     addRegClassId(myUserSubmit, "clcBtnSub", "clcBtnSub", clcIPutContL);
     // loading img
     var clcLoadingIcn = document.createElement("img");
-    clcLoadingIcn.src = clcSiteUrl + "/images/loading.gif";
+    clcLoadingIcn.src = clcSiteUrl + "/images/loading2.gif";
     addRegClassId(clcLoadingIcn, "clcLoadingIcn clcHide", "", clcIPutContL);
     addRegClassId(clcIPutContL, "clcFrmRow center", "", clcStepB);
 
@@ -2269,7 +2269,7 @@ function setLang(clang) {
         this.clcLang = "he";
         jQuery("#clcFCont").removeClass("clcLtr");
         // טעינה של קובץ טקסטים עברית
-        jQuery("#clcRestName").text(rest.Name);
+        // jQuery("#clcRestName").text(rest.Name);
         jQuery("#clcRestCity").text(rest.Address);
         if (rest.PreliminarRemark != null) {
             jQuery("#clcBtmRemDin").text(rest.PreliminarRemark);
@@ -2338,6 +2338,8 @@ function setLang(clang) {
     jQuery('#Smoking option[value="0"]').text(lang[clcLang].no);
     jQuery('#Smoking option[value="1"]').text(lang[clcLang].yes);
     jQuery('#Smoking option[value="2"]').text(lang[clcLang].neverMind);
+    // datepicker
+    $("#datepicker").datepicker("option", $.datepicker.regional[clcLang]);
 }
 // isiphone
 function clcIsIphone() {
